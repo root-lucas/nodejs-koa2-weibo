@@ -25,6 +25,9 @@ router.get('/profile/:userName', async (ctx, next) => {
     const {
         userName
     } = ctx.params
+
+    // throw Error() // test,线上环境触发重定向到 /error 路由
+
     ctx.body = {
         title: 'this is profile page',
         userName

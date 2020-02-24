@@ -8,9 +8,20 @@ const logger = require('koa-logger')
 
 const index = require('./routes/index')
 const users = require('./routes/users')
+const errorViewRouter = require('./routes/view/error')
+const {
+    isProd
+} = require('./utils/env')
 
 // error handler
-onerror(app)
+let onerrorConf = {}
+// 线上环境
+if (isProd) {
+    onerrorConf = {
+        redirect: '/error'
+    }
+}
+onerror(app, onerrorConf)
 
 // middlewares
 app.use(bodyparser({
@@ -35,6 +46,7 @@ app.use(async (ctx, next) => {
 // routes
 app.use(index.routes(), index.allowedMethods())
 app.use(users.routes(), users.allowedMethods())
+app.use(errorViewRouter.routes(), errorViewRouter.allowedMethods()) // 404 路由必须注册到最后面
 
 // error-handling
 app.on('error', (err, ctx) => {
