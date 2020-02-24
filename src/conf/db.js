@@ -1,5 +1,5 @@
 /**
- * @description sequelize 实例
+ * @description 存储配置
  * @author lucas
  */
 
