@@ -27,6 +27,8 @@
     "babel-eslint": "^10.0.3",
     "cross-env": "^7.0.0",
     "eslint": "^6.8.0",
+    "koa-generic-session": "^2.0.4",
+    "koa-redis": "^4.0.1",
     "nodemon": "^1.19.1",
     "pre-commit": "^1.2.2",
     "redis": "^3.0.2"
