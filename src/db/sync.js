@@ -4,19 +4,20 @@
  */
 
 const seq = require('./seq')
-// require('./model');
+require('./model') // 待写入口路径
 
 // 测试连接
-seq.authenticate().then(() => {
-    console.log('auth ok')
-}).catch(() => {
-    console.log('auth err')
-})
+seq
+    .authenticate()
+    .then(() => {
+        console.log('auth ok')
+    })
+    .catch(() => {
+        console.log('auth err')
+    })
 
 // 执行同步, 会先删掉表后再建表，如果只是想新建表则去除 { force: true} 即可
-seq.sync({
-    force: true
-}).then(() => {
+seq.sync({ force: true }).then(() => {
     console.log('sync ok')
     process.exit()
 })

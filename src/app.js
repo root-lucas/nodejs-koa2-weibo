@@ -10,14 +10,10 @@ const session = require('koa-generic-session')
 const redisStore = require('koa-redis')
 
 const index = require('./routes/index')
-const users = require('./routes/users')
+const userViewRouter = require('./routes/view/user')
 const errorViewRouter = require('./routes/view/error')
-const {
-    isProd
-} = require('./utils/env')
-const {
-    REDIS_CONF
-} = require('./conf/db')
+const { isProd } = require('./utils/env')
+const { REDIS_CONF } = require('./conf/db')
 
 // error handler
 let onerrorConf = {}
@@ -30,33 +26,41 @@ if (isProd) {
 onerror(app, onerrorConf)
 
 // middlewares
-app.use(bodyparser({
-    enableTypes: ['json', 'form', 'text']
-}))
+app.use(
+    bodyparser({
+        enableTypes: ['json', 'form', 'text']
+    })
+)
 app.use(json())
 app.use(logger())
 app.use(require('koa-static')(__dirname + '/public'))
 
-app.use(views(__dirname + '/views', {
-    extension: 'ejs'
-}))
+app.use(
+    views(__dirname + '/views', {
+        extension: 'ejs'
+    })
+)
 
 // session 配置
 app.keys = ['hello_world']
-app.use(session({
-    key: 'weibo.sid', // cookie name 默认是 ‘koa.sid’
-    prefix: 'weibo:sess:', // redis key 的前缀，默认是 ‘koa:sess:’
-    cookie: { // 配置 cookie
-        path: '/',
-        httpOnly: true,
-        maxAge: 24 * 60 * 60 * 1000 // 24 小时, cookie 过期时间
-    },
-    // ttl: 24 * 60 * 60 * 1000, // redis 过期时间, 默认和cookie相同
-    store: redisStore({ // 配置 redis
-        all: '127.0.0.1:6379'
-        // all: `${REDIS_CONF.host}:${REDIS_CONF.port}`
+app.use(
+    session({
+        key: 'weibo.sid', // cookie name 默认是 ‘koa.sid’
+        prefix: 'weibo:sess:', // redis key 的前缀，默认是 ‘koa:sess:’
+        cookie: {
+            // 配置 cookie
+            path: '/',
+            httpOnly: true,
+            maxAge: 24 * 60 * 60 * 1000 // 24 小时, cookie 过期时间
+        },
+        // ttl: 24 * 60 * 60 * 1000, // redis 过期时间, 默认和cookie相同
+        store: redisStore({
+            // 配置 redis
+            all: '127.0.0.1:6379'
+            // all: `${REDIS_CONF.host}:${REDIS_CONF.port}`
+        })
     })
-}))
+)
 
 // // logger
 // app.use(async (ctx, next) => {
@@ -68,7 +72,7 @@ app.use(session({
 
 // routes
 app.use(index.routes(), index.allowedMethods())
-app.use(users.routes(), users.allowedMethods())
+app.use(userViewRouter.routes(), userViewRouter.allowedMethods())
 app.use(errorViewRouter.routes(), errorViewRouter.allowedMethods()) // 404 路由必须注册到最后面
 
 // error-handling
