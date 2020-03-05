@@ -4,7 +4,7 @@
  */
 
 const seq = require('./seq')
-require('./model') // 待写入口路径
+require('./model/index') // 数据模型入口文件
 
 // 测试连接
 seq
