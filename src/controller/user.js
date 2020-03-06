@@ -10,6 +10,7 @@ const {
     registerUserNameExistInfo,
     registerFailInfo
 } = require('../model/ErrorInfo')
+const doCrypto = require('../utils/cryp')
 
 /**
  * 检测用户名是否存在
@@ -44,7 +45,7 @@ async function register({ userName, password, gender }) {
     try {
         await createUser({
             userName,
-            password,
+            password: doCrypto(password),
             gender
         })
         return new SuccessModel()
