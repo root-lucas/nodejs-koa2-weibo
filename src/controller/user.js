@@ -8,7 +8,8 @@ const { SuccessModel, ErrorModel } = require('../model/ResModel')
 const {
     registerUserNameNotExistInfo,
     registerUserNameExistInfo,
-    registerFailInfo
+    registerFailInfo,
+    loginFailInfo
 } = require('../model/ErrorInfo')
 const doCrypto = require('../utils/cryp')
 
