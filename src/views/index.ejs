@@ -1,19 +1,21 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1><%= title %></h1>
-    <p>EJS Welcome to <%= title %></p>
-    <p><%= msg %></p>
-    <%# 注意 %= 符号不能含空格 #%>
-    <hr>
+<%- include('layout/header', { title: '微博 - 首页', isNav: true, list: true,
+isInputBlog: true })%>
 
-    <%- include('widgets/user-info', { isMe }) %> 
+<div class="container margin-top-20">
+  <div class="row">
+    <!-- 左侧 -->
+    <div class="col-8">
+      <!-- 输入框 -->
+      <%- include('widgets/input')%>
+    </div>
+    <!-- 左侧结束 -->
 
-    <%- include('widgets/blog-list', { blogList }) %>
+    <!-- 右侧 -->
+    <div class="col-4">
+      右侧
+    </div>
+    <!-- 右侧结束 -->
+  </div>
+</div>
 
-  </body>
-</html>
+<%- include('layout/footer')%>
