@@ -4,5 +4,6 @@
  */
 
 module.exports = {
-    DEFAULT_PICTURE: 'https://dwz.cn/rnTnftZs'
+    DEFAULT_PICTURE: 'https://s1.ax1x.com/2020/03/14/8loGm8.png',
+    PAGE_SIZE: 5
 }
