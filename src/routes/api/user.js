@@ -43,8 +43,8 @@ router.post('/login', async (ctx, next) => {
 router.post('/delete', loginCheck, async (ctx, next) => {
     if (isTest) {
     // 测试环境下，测试账号登录之后，删除自己
-        const { username } = ctx.session.userInfo // 注意这里必须是小写
-        ctx.body = await deleteCurUser(username)
+        const { userName } = ctx.session.userInfo // 注意这里必须是小写
+        ctx.body = await deleteCurUser(userName)
     }
 })
 
