@@ -66,9 +66,9 @@ router.patch(
     genValidator(userValidate),
     async (ctx, next) => {
         const { password, newPassword } = ctx.request.body
-        console.log('ctx.session.userInfo=', password, newPassword)
-        const { username } = ctx.session.userInfo // session 自动转小写
-        ctx.body = await changePassword(username, password, newPassword)
+
+        const { userName } = ctx.session.userInfo // session 自动转小写
+        ctx.body = await changePassword(userName, password, newPassword)
     }
 )
 

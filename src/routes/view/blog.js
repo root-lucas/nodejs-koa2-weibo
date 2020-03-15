@@ -14,8 +14,8 @@ router.get('/', loginRedirect, async (ctx, next) => {
 
 // 个人主页
 router.get('/profile', loginRedirect, async (ctx, next) => {
-    const { username } = ctx.session.userInfo
-    ctx.redirect(`/profile/${username}`)
+    const { userName } = ctx.session.userInfo
+    ctx.redirect(`/profile/${userName}`)
 })
 
 router.get('/profile/:userName', loginRedirect, async (ctx, next) => {

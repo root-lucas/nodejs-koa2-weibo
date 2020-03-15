@@ -21,7 +21,7 @@ async function getUserInfo(userName, password) {
 
     // 查询
     let result = await User.findOne({
-        attributes: ['id', 'username', 'nickName', 'picture', 'city'],
+        attributes: ['id', 'userName', 'nickName', 'picture', 'city'],
         where: whereOpt
     })
 
@@ -73,7 +73,7 @@ async function deleteUser(userName) {
  */
 async function updateUser(
     { newPassword, newNickName, newPicture, newCity },
-    { username, password }
+    { userName, password }
 ) {
     // 拼接修改内容
     const updateData = {}
@@ -92,7 +92,7 @@ async function updateUser(
 
     // 拼接查询条件
     const whereData = {
-        username
+        userName
     }
     if (password) {
         whereData.password = password

@@ -107,9 +107,9 @@ async function deleteCurUser(userName) {
  * @param {string} picture 头像
  */
 async function changeInfo(ctx, { nickName, city, picture }) {
-    const { username } = ctx.session.userInfo
+    const { userName } = ctx.session.userInfo
     if (!nickName) {
-        nickName = username
+        nickName = userName
     }
 
     const result = await updateUser(
@@ -118,7 +118,7 @@ async function changeInfo(ctx, { nickName, city, picture }) {
             newCity: city,
             newPicture: picture
         },
-        { username }
+        { userName }
     )
     if (result) {
     // 执行成功, 更新 session 数据
@@ -136,17 +136,17 @@ async function changeInfo(ctx, { nickName, city, picture }) {
 
 /**
  * 修改密码
- * @param {string} username 用户名
+ * @param {string} userName 用户名
  * @param {string} password 当前密码
  * @param {string} newPassword 新密码
  */
-async function changePassword(username, password, newPassword) {
+async function changePassword(userName, password, newPassword) {
     const result = await updateUser(
         {
             newPassword: doCrypto(newPassword)
         },
         {
-            username,
+            userName,
             password: doCrypto(password)
         }
     )
