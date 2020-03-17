@@ -9,7 +9,15 @@
  */
 
 module.exports = {
-    USER_NAME: 'zhangsan',
-    COOKIE:
-    'weibo.sid=8RZM6e4ZySC1QuyCfSLjCtlNrwG0g9bt; weibo.sid.sig=Ete8ItSUDzG7lKTLbxUaDVRAFm0'
+    // 张三
+    Z_ID: 2, // 此处对应数据库表的 id 字段
+    Z_USER_NAME: 'zhangsan',
+    Z_COOKIE:
+    'weibo.sid=REOa5gPDwNwkNVEkq-KPn96eFIwTSVpt; weibo.sid.sig=QHORdFRvCB2_UDXAjr0WAWG_VQA',
+
+    // 李四
+    L_ID: 1,
+    L_USER_NAME: 'lisi',
+    L_COOKIE:
+    'weibo.sid=0Qeg9hVPqA5MfFObrsGBEVIiDK89itRI; weibo.sid.sig=wH3_yb6fFS6nLXqJYMsXasC9_yk'
 }
