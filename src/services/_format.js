@@ -23,7 +23,7 @@ function _formatUserPicture(obj) {
  * @param {Array|Object} list 用户列表或者单个用户对象
  */
 function formatUser(list) {
-    if (list) {
+    if (list == null) {
         return list
     }
 
