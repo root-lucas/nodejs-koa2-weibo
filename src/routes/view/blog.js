@@ -9,9 +9,44 @@ const { getProfileBlogList } = require('../../controller/blog-profile')
 const { isExist } = require('../../controller/user')
 const { getSquareBlogList } = require('../../controller/blog-square')
 const { getFans, getFollowers } = require('../../controller/user-relation')
+const { getHomeBlogList } = require('../../controller/blog-home')
 
 router.get('/', loginRedirect, async (ctx, next) => {
-    await ctx.render('index', {})
+    const userInfo = ctx.session.userInfo
+    const { id: userId } = userInfo
+
+    // 获取第一页数据
+    const result = await getHomeBlogList(userId)
+    const { isEmpty, blogList, pageSize, pageIndex, count } = result.data
+
+    // 获取粉丝
+    const fansResult = await getFans(userId)
+    const { count: fansCount, fansList } = fansResult.data
+
+    // 获取关注人列表
+    const followersResult = await getFollowers(userId)
+    const { count: followersCount, followersList } = followersResult.data
+
+    await ctx.render('index', {
+        userData: {
+            userInfo,
+            fansData: {
+                count: fansCount,
+                list: fansList
+            },
+            followersData: {
+                count: followersCount,
+                list: followersList
+            }
+        },
+        blogData: {
+            isEmpty,
+            blogList,
+            pageSize,
+            pageIndex,
+            count
+        }
+    })
 })
 
 // 个人主页
@@ -29,11 +64,11 @@ router.get('/profile/:userName', loginRedirect, async (ctx, next) => {
     let curUserInfo
 
     if (isMe) {
-    // 是当前登录用户
+        // 是当前登录用户
         curUserInfo = myUserInfo
     } else {
-    // 不是当前登录用户
-    // 判断该用户是否存在
+        // 不是当前登录用户
+        // 判断该用户是否存在
         const existUserInfo = await isExist(curUserName)
         if (existUserInfo.errno !== 0) {
             // 用户不存在
