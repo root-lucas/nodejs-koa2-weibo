@@ -10,7 +10,8 @@
             <a href="/profile/<%= blog.user.userName%>">
                 <%= blog.user.nickName%>
             </a>:
-            <span><%- blog.content%></span>
+            <!-- 注意下面不能使用等号 = , 否则将被当作字符串处理-->
+            <span><%- blog.contentFormat%></span>
         </div>
         <div class="info">
             <span><%= blog.createdAtFormat%></span>
@@ -35,7 +36,7 @@
     function setCursor(el, st, end) {
         if (el.setSelectionRange) {
             el.focus()
-            el.setSelectionRange(st, end)
+            el.setSelectionRange(st, end) // 使鼠标焦点定位到文本首位
         } else if (el.createTextRange) {
             var range = el.createTextRange()
             range.collapse(true)

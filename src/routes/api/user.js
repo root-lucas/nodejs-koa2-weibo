@@ -18,6 +18,7 @@ const userValidate = require('../../validator/user')
 const genValidator = require('../../middlewares/validator')
 const { isTest } = require('../../utils/env')
 const { loginCheck } = require('../../middlewares/loginChecks')
+const { getFollowers } = require('../../controller/user-relation')
 
 router.prefix('/api/user')
 
@@ -42,7 +43,7 @@ router.post('/login', async (ctx, next) => {
 // 删除
 router.post('/delete', loginCheck, async (ctx, next) => {
     if (isTest) {
-    // 测试环境下，测试账号登录之后，删除自己
+        // 测试环境下，测试账号登录之后，删除自己
         const { userName } = ctx.session.userInfo // 注意这里必须是小写
         ctx.body = await deleteCurUser(userName)
     }
@@ -75,6 +76,19 @@ router.patch(
 // 退出登录
 router.post('/logout', loginCheck, async (ctx, next) => {
     ctx.body = await logout(ctx)
+})
+
+// 获取 at 列表，即关注人列表
+router.get('/getAtList', loginCheck, async (ctx, next) => {
+    const { id: userId } = ctx.session.userInfo
+    const result = await getFollowers(userId)
+    const { followersList } = result.data
+
+    const list = followersList.map(user => {
+        return `${user.nickName} - ${user.userName}`
+    })
+    // map返回格式如 ['张三 - zhangsan', '李四 - lisi', '昵称 - userName']
+    ctx.body = list
 })
 
 module.exports = router
