@@ -13,7 +13,7 @@ module.exports = {
     Z_ID: 1, // 此处对应数据库表的 id 字段
     Z_USER_NAME: 'zhangsan',
     Z_COOKIE:
-    'weibo.sid=REOa5gPDwNwkNVEkq-KPn96eFIwTSVpt; weibo.sid.sig=QHORdFRvCB2_UDXAjr0WAWG_VQA',
+    'weibo.sid=thIBT6PNvbqPVDuwuJStsvI_LelE8C90; weibo.sid.sig=HCB-5-tOcX6ADh3zts9SyiD1ceg',
 
     // 李四
     L_ID: 2,
