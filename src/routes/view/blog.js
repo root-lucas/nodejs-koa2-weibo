@@ -172,7 +172,6 @@ router.get('/at-me', loginRedirect, async (ctx, next) => {
 
     // 标记为已读
     if (atCount > 0) {
-        // await markAsRead(userId)
     }
 })
 

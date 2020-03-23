@@ -12,6 +12,7 @@ const redisStore = require('koa-redis')
 const koaStatic = require('koa-static')
 
 // 路由
+const atAPIRouter = require('./routes/api/blog-at')
 const squareAPIRouter = require('./routes/api/blog-square')
 const profileAPIRouter = require('./routes/api/blog-profile')
 const homeAPIRouter = require('./routes/api/blog-home')
@@ -81,6 +82,7 @@ app.use(
 // })
 
 // routes
+app.use(atAPIRouter.routes(), atAPIRouter.allowedMethods())
 app.use(squareAPIRouter.routes(), squareAPIRouter.allowedMethods())
 app.use(profileAPIRouter.routes(), profileAPIRouter.allowedMethods())
 app.use(homeAPIRouter.routes(), homeAPIRouter.allowedMethods())
