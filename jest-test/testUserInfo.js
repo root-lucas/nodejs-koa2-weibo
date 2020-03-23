@@ -10,14 +10,14 @@
 
 module.exports = {
     // 张三
-    Z_ID: 1, // 此处对应数据库表的 id 字段
+    Z_ID: 2, // 此处对应数据库表的 id 字段
     Z_USER_NAME: 'zhangsan',
     Z_COOKIE:
-    'weibo.sid=thIBT6PNvbqPVDuwuJStsvI_LelE8C90; weibo.sid.sig=HCB-5-tOcX6ADh3zts9SyiD1ceg',
+    'weibo.sid=Sqm7qijFO5R_EYHuNwq4P98Mfp0mUpG2; weibo.sid.sig=yl4paEv2Q52imRtWOsU8O_KIzxw',
 
     // 李四
-    L_ID: 2,
+    L_ID: 1,
     L_USER_NAME: 'lisi',
     L_COOKIE:
-    'weibo.sid=urXFvj844UuyGjV6vV1raD-8FuMQ85tH; weibo.sid.sig=ngTHlkSY16JrPj72p2wwIwiJOqU'
+    'weibo.sid=4Vro-JIlkZy7CwI2V-brouFQUPVc1vHj; weibo.sid.sig=URRREJpn0Ve49AF0x3UjkrWlErU'
 }
