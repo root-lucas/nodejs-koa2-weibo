@@ -2,11 +2,24 @@
 
 ## Usage install
 
-安装依赖：yarn install 
+**Tip：** 开启`MySQL、redis`本地服务，新建`koa2_weibo_db`数据库名，运行导入上述准备的`koa2_weibo_db.sql`文件导入数据，`MySQL和redis`配置信息保存在`src/conf/db`文件。
 
-启动项目：yarn run dev
+```sh
+# 安装依赖
+yarn install 
 
-`https://localhost:3000`
+# 启动项目
+yarn run dev
+
+# 页面链接
+http://localhost:3000
+
+# 测试账号
+lisi	123
+lucas	123
+```
+
+
 
 ## 分层架构设计
 
