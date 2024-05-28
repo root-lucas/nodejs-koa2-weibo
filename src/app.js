@@ -67,7 +67,10 @@ app.use(
         // ttl: 24 * 60 * 60 * 1000, // redis 过期时间, 默认和cookie相同
         store: redisStore({
             // 配置 redis
-            all: '127.0.0.1:6379'
+            // all: '127.0.0.1:6379'
+            host:'127.0.0.1',
+            port:6379,
+            password:'12345'
             // all: `${REDIS_CONF.host}:${REDIS_CONF.port}`
         })
     })

@@ -1,8 +1,23 @@
 这是一个基于 `nodejs + koa2`框架实现模拟某微博基本功能完备的的项目
 
+## Test Environment
+
+```
+redis-cli 5.0.14.1
+mysql 8.0.31
+node v18.17.0
+win10
+
+项目信息配置文件：
+	- src/conf/db.js
+	- src/app.js
+```
+
+
+
 ## Usage install
 
-**Tip：** 开启`MySQL、redis`本地服务，新建`koa2_weibo_db`数据库名，运行导入上述准备的`koa2_weibo_db.sql`文件导入数据，`MySQL和redis`配置信息保存在`src/conf/db`文件。
+**Tip：** 开启`MySQL、Redis`本地服务，打开 `navicat` 连接`mysql`并新建`koa2_weibo_db`数据库名，运行导入上述准备的`koa2_weibo_db.sql`文件导入数据。
 
 ```sh
 # 安装依赖
